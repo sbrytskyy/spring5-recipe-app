@@ -3,9 +3,11 @@ package guru.springframework.bootstrap;
 import guru.springframework.domain.Ingredient;
 import guru.springframework.domain.Notes;
 import guru.springframework.domain.Recipe;
+import guru.springframework.domain.UnitOfMeasure;
 import guru.springframework.repositories.IngredientRepository;
 import guru.springframework.repositories.NotesRepository;
 import guru.springframework.repositories.RecipeRepository;
+import guru.springframework.repositories.UnitOfMeasureRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +20,15 @@ public class DataLoader implements CommandLineRunner {
     private final NotesRepository notesRepository;
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
+    private final UnitOfMeasureRepository unitOfMeasureRepository;
 
     public DataLoader(NotesRepository notesRepository, RecipeRepository recipeRepository,
-                      IngredientRepository ingredientRepository) {
+                      IngredientRepository ingredientRepository,
+                      UnitOfMeasureRepository unitOfMeasureRepository) {
         this.notesRepository = notesRepository;
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
+        this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
     @Override
@@ -46,11 +51,21 @@ public class DataLoader implements CommandLineRunner {
         ingredient1.setRecipe(recipe);
         ingredientRepository.save(ingredient1);
 
+        UnitOfMeasure unitOfMeasure1 = new UnitOfMeasure();
+        unitOfMeasure1.setUom("cup");
+        unitOfMeasure1.setIngredient(ingredient1);
+        unitOfMeasureRepository.save(unitOfMeasure1);
+
         Ingredient ingredient2 = new Ingredient();
         ingredient2.setDescription("Salt");
         ingredient2.setAmount(new BigDecimal(50));
         ingredient2.setRecipe(recipe);
         ingredientRepository.save(ingredient2);
+
+        UnitOfMeasure unitOfMeasure2 = new UnitOfMeasure();
+        unitOfMeasure2.setUom("spoon");
+        unitOfMeasure2.setIngredient(ingredient2);
+        unitOfMeasureRepository.save(unitOfMeasure2);
 
         notes.setRecipe(recipe);
         notesRepository.save(notes);
@@ -60,8 +75,10 @@ public class DataLoader implements CommandLineRunner {
         recipeRepository.save(recipe);
 
         ingredient1.setRecipe(recipe);
+        ingredient1.setUom(unitOfMeasure1);
         ingredientRepository.save(ingredient1);
         ingredient2.setRecipe(recipe);
+        ingredient2.setUom(unitOfMeasure2);
         ingredientRepository.save(ingredient2);
     }
 }
