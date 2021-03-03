@@ -1,10 +1,7 @@
 package guru.springframework.bootstrap;
 
 import guru.springframework.domain.*;
-import guru.springframework.repositories.IngredientRepository;
-import guru.springframework.repositories.NotesRepository;
-import guru.springframework.repositories.RecipeRepository;
-import guru.springframework.repositories.UnitOfMeasureRepository;
+import guru.springframework.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -18,14 +15,17 @@ public class DataLoader implements CommandLineRunner {
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
+    private final CategoryRepository categoryRepository;
 
     public DataLoader(NotesRepository notesRepository, RecipeRepository recipeRepository,
                       IngredientRepository ingredientRepository,
-                      UnitOfMeasureRepository unitOfMeasureRepository) {
+                      UnitOfMeasureRepository unitOfMeasureRepository,
+                      CategoryRepository categoryRepository) {
         this.notesRepository = notesRepository;
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -42,6 +42,16 @@ public class DataLoader implements CommandLineRunner {
         recipe.setDescription("Recipe description");
         recipe.setDifficulty(Difficulty.MODERATE);
         recipeRepository.save(recipe);
+
+        Category category1 = new Category();
+        category1.setDescription("Baking");
+        category1.setRecipes(Set.of(recipe));
+        categoryRepository.save(category1);
+
+        Category category2 = new Category();
+        category2.setDescription("Roasting");
+        category2.setRecipes(Set.of(recipe));
+        categoryRepository.save(category2);
 
         Ingredient ingredient1 = new Ingredient();
         ingredient1.setDescription("Sugar");
@@ -68,6 +78,7 @@ public class DataLoader implements CommandLineRunner {
 
         recipe.setNotes(notes);
         recipe.setIngredients(Set.of(ingredient1, ingredient2));
+        recipe.setCategories(Set.of(category1, category2));
         recipeRepository.save(recipe);
 
         ingredient1.setRecipe(recipe);
