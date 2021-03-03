@@ -1,9 +1,6 @@
 package guru.springframework.bootstrap;
 
-import guru.springframework.domain.Ingredient;
-import guru.springframework.domain.Notes;
-import guru.springframework.domain.Recipe;
-import guru.springframework.domain.UnitOfMeasure;
+import guru.springframework.domain.*;
 import guru.springframework.repositories.IngredientRepository;
 import guru.springframework.repositories.NotesRepository;
 import guru.springframework.repositories.RecipeRepository;
@@ -43,6 +40,7 @@ public class DataLoader implements CommandLineRunner {
         recipe.setPrepTime(120);
         recipe.setSource("Some cool recipe book");
         recipe.setDescription("Recipe description");
+        recipe.setDifficulty(Difficulty.MODERATE);
         recipeRepository.save(recipe);
 
         Ingredient ingredient1 = new Ingredient();
