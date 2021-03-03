@@ -52,8 +52,7 @@ public class DataLoader implements CommandLineRunner {
         ingredientRepository.save(ingredient1);
 
         UnitOfMeasure unitOfMeasure1 = new UnitOfMeasure();
-        unitOfMeasure1.setUom("cup");
-        unitOfMeasure1.setIngredient(ingredient1);
+        unitOfMeasure1.setDescription("cup");
         unitOfMeasureRepository.save(unitOfMeasure1);
 
         Ingredient ingredient2 = new Ingredient();
@@ -63,8 +62,7 @@ public class DataLoader implements CommandLineRunner {
         ingredientRepository.save(ingredient2);
 
         UnitOfMeasure unitOfMeasure2 = new UnitOfMeasure();
-        unitOfMeasure2.setUom("spoon");
-        unitOfMeasure2.setIngredient(ingredient2);
+        unitOfMeasure2.setDescription("spoon");
         unitOfMeasureRepository.save(unitOfMeasure2);
 
         notes.setRecipe(recipe);
