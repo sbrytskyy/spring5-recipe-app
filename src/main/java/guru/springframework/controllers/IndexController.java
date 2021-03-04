@@ -1,6 +1,5 @@
 package guru.springframework.controllers;
 
-import guru.springframework.domain.Recipe;
 import guru.springframework.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +20,7 @@ public class IndexController {
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model){
 
-        Iterable<Recipe> recipes = recipeService.getRecipes();
-
-        model.addAttribute("recipes", recipes);
+        model.addAttribute("recipes", recipeService.getRecipes());
 
         return "index";
     }
