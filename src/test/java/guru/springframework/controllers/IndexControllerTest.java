@@ -31,16 +31,17 @@ public class IndexControllerTest {
 
     @Test
     public void getIndexPage() {
-        Set<Recipe> recipes = Set.of(new Recipe());
-        when(recipeService.getRecipes()).thenReturn(recipes);
-        when(model.getAttribute("recipes")).thenReturn(recipes);
+//        Set<Recipe> recipes = Set.of(new Recipe());
+//        when(recipeService.getRecipes()).thenReturn(recipes);
+//        when(model.getAttribute("recipes")).thenReturn(recipes);
 
-        String indexPage = indexController.getIndexPage(model);
+        String viewName = indexController.getIndexPage(model);
 
-        assertEquals(indexPage, "index");
+        assertEquals(viewName, "index");
         assertEquals(model.getAttribute("recipes"), recipes);
-        verify(model, times(1)).addAttribute(eq("recipes"), anyIterable());
-        verify(model, times(0)).addAttribute(AdditionalMatchers.not(eq("recipes")), anyIterable());
+
         verify(recipeService, times(1)).getRecipes();
+        verify(model, times(1)).addAttribute(eq("recipes"), anySet());
+        verify(model, times(0)).addAttribute(AdditionalMatchers.not(eq("recipes")), anyIterable());
     }
 }
