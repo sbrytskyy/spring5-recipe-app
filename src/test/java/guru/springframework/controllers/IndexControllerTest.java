@@ -13,21 +13,21 @@ import static org.mockito.Mockito.*;
 public class IndexControllerTest {
 
     @Mock
-    Model model;
-    @Mock
     private RecipeService recipeService;
-    private IndexController indexController;
+    @Mock
+    Model model;
+    private IndexController controller;
 
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        indexController = new IndexController(recipeService);
+        controller = new IndexController(recipeService);
     }
 
     @Test
     public void getIndexPage() {
-        String viewName = indexController.getIndexPage(model);
+        String viewName = controller.getIndexPage(model);
 
         assertEquals(viewName, "index");
 
