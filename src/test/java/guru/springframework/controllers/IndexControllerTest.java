@@ -1,11 +1,9 @@
 package guru.springframework.controllers;
 
 import guru.springframework.domain.Recipe;
-import guru.springframework.domain.Recipe;
 import guru.springframework.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,9 +23,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class IndexControllerTest {
 
     @Mock
-    private RecipeService recipeService;
-    @Mock
     Model model;
+    @Mock
+    private RecipeService recipeService;
     private IndexController controller;
 
     @Before
@@ -57,7 +55,7 @@ public class IndexControllerTest {
     }
 
     @Test
-    public void getIndexPage() throws Exception {
+    public void getIndexPage() {
 
         //given
         Set<Recipe> recipes = new HashSet<>();
