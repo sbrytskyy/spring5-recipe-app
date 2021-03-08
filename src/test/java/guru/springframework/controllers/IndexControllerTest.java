@@ -23,9 +23,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class IndexControllerTest {
 
     @Mock
-    Model model;
-    @Mock
     private RecipeService recipeService;
+    @Mock
+    Model model;
     private IndexController controller;
 
     @Before

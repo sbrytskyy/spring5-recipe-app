@@ -33,11 +33,11 @@ public class DataLoader implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) {
-        createSomeUoMs();
-        createSomeCategories();
-
-        Recipe recipe = getRecipe();
-        recipeRepository.save(recipe);
+//        createSomeUoMs();
+//        createSomeCategories();
+//
+//        Recipe recipe = getRecipe();
+//        recipeRepository.save(recipe);
     }
 
     private Recipe getRecipe() {
