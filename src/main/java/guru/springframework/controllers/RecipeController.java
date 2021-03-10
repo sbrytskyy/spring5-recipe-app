@@ -33,7 +33,6 @@ public class RecipeController {
         return "recipe/recipeform";
     }
 
-    @PostMapping("recipe")
     @RequestMapping("recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));

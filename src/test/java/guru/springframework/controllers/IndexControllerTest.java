@@ -45,16 +45,6 @@ public class IndexControllerTest {
     }
 
     @Test
-    public void getIndexPageShort() {
-        String viewName = controller.getIndexPage(model);
-
-        assertEquals(viewName, "index");
-
-        verify(recipeService, times(1)).getRecipes();
-        verify(model, times(1)).addAttribute(eq("recipes"), anySet());
-    }
-
-    @Test
     public void getIndexPage() {
 
         //given
@@ -82,4 +72,13 @@ public class IndexControllerTest {
         assertEquals(2, setInController.size());
     }
 
+    @Test
+    public void getIndexPageShort() {
+        String viewName = controller.getIndexPage(model);
+
+        assertEquals(viewName, "index");
+
+        verify(recipeService, times(1)).getRecipes();
+        verify(model, times(1)).addAttribute(eq("recipes"), anySet());
+    }
 }

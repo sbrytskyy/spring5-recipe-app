@@ -28,7 +28,7 @@ public class RecipeControllerTest {
     @Mock
     private Model model;
 
-    private RecipeController recipeController;
+    private RecipeController controller;
 
     private MockMvc mockMvc;
 
@@ -36,16 +36,8 @@ public class RecipeControllerTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        recipeController = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
-    }
-
-    @Test
-    public void showById() {
-
-        String viewName = recipeController.showById(1L, model);
-
-        assertEquals("recipe/show", viewName);
+        controller = new RecipeController(recipeService);
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
@@ -99,5 +91,13 @@ public class RecipeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
+    }
+
+    @Test
+    public void showById() {
+
+        String viewName = controller.showById(1L, model);
+
+        assertEquals("recipe/show", viewName);
     }
 }
