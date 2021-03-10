@@ -59,7 +59,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipeCoomandById() {
+    public void getRecipeCommandById() {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
         Optional<Recipe> recipeOptional = Optional.of(recipe);
@@ -91,10 +91,10 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void testDeleteById() throws Exception {
+    public void deleteById() {
 
         //given
-        Long idToDelete = Long.valueOf(2L);
+        Long idToDelete = 2L;
 
         //when
         recipeService.deleteById(idToDelete);
