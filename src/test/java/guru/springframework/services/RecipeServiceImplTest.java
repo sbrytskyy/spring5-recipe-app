@@ -18,6 +18,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
+/**
+ * Created by jt on 6/17/17.
+ */
 public class RecipeServiceImplTest {
 
     private RecipeService recipeService;
@@ -77,7 +80,8 @@ public class RecipeServiceImplTest {
 
     @Test
     public void getRecipes() {
-        when(recipeRepository.findAll()).thenReturn(Set.of(new Recipe()));
+        when(recipeService.getRecipes()).thenReturn(Set.of(new Recipe()));
+        //when(recipeRepository.findAll()).thenReturn(Set.of(new Recipe()));
 
         Set<Recipe> recipes = recipeService.getRecipes();
 

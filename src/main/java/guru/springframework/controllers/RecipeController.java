@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Created by jt on 6/19/17.
+ */
 @Slf4j
 @Controller
 public class RecipeController {
@@ -19,10 +22,9 @@ public class RecipeController {
 
     @GetMapping
     @RequestMapping("/recipe/{id}/show")
-    public String showById(@PathVariable Long id, Model model) {
+    public String showById(@PathVariable String id, Model model){
 
-        model.addAttribute("recipe", recipeService.findById(new Long(id)));
-
+        model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
         return "recipe/show";
     }
 
