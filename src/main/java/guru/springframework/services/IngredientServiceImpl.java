@@ -43,6 +43,7 @@ public class IngredientServiceImpl implements IngredientService {
         if (!recipeOptional.isPresent()){
             //todo impl error handling
             log.error("recipe id not found. Id: " + recipeId);
+            throw new NotFoundException("Recipe Not Found. ID: " + recipeId);
         }
 
         Recipe recipe = recipeOptional.get();
@@ -54,7 +55,7 @@ public class IngredientServiceImpl implements IngredientService {
         if(!ingredientCommandOptional.isPresent()){
             //todo impl error handling
             log.error("Ingredient id not found: " + ingredientId);
-            throw new NotFoundException("Ingredient Not Found");
+            throw new NotFoundException("Ingredient Not Found. ID: " + ingredientId);
         }
 
         return ingredientCommandOptional.get();
